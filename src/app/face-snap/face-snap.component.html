@@ -1,1 +1,12 @@
-<p>face-snap works!</p>
+<div class="snap">
+    <h2 class="snap_title">{{ title }}</h2>
+    <img [src]="imgUrl" [alt]="title" class="snap_img" />
+    <div class="snap_container">
+        <p class="snap_container_content">Publié le {{ createDate  }}</p>
+        <p class="snap_container_content">{{ description }}</p>
+        <p class="snap_container_content">
+            <button (click)="onLike()">{{ buttonText }}</button>
+            ❤️ {{ likes }}
+        </p>
+    </div>
+</div>

@@ -1,12 +1,14 @@
 <div class="snap">
-    <h2 class="snap_title">{{ title }}</h2>
-    <img [src]="imgUrl" [alt]="title" class="snap_img" />
+    <h2 class="snap_title">{{ faceSnap.title }}</h2>
+    <img [src]="faceSnap.imgUrl" [alt]="faceSnap.title" class="snap_img" />
     <div class="snap_container">
-        <p class="snap_container_content">Publié le {{ createDate  }}</p>
-        <p class="snap_container_content">{{ description }}</p>
-        <p class="snap_container_content">
-            <button (click)="onLike()">{{ buttonText }}</button>
-            ❤️ {{ likes }}
-        </p>
+        <p class="snap_container_content">{{ faceSnap.description }}</p>
+        <footer class="snap_container_footer">
+            <p class="snap_container_content snap_container_content_date">Publié le {{ faceSnap.getFormattedDate(datePipe, 'dd/MM/yyyy')  }}</p>
+            <p class="snap_container_content">
+                <button (click)="onLike()" class="snap_container_footer_btn">{{ buttonText }}</button>
+                ❤️ {{ faceSnap.likes }}
+            </p>
+        </footer>
     </div>
 </div>

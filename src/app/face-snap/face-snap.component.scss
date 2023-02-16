@@ -1,12 +1,48 @@
 .snap {
     display: flex;
     flex-direction: column;
-    align-items: center;
-    width: 35%;
-    margin: 2rem;
+    width: 100%;
+    margin: 2rem 0;
     text-align: center;
+    box-shadow: 0 0 16px #0000003d;
+    border-radius: 1rem;
+    
     &_img {
         width: 100%;
         object-fit: cover;
+    }
+    
+    &_container {
+        margin: 0.4rem;
+        
+        &_content {
+            &_date {
+                font-size: 15px;
+                color: #686868;
+                font-style: italic;
+            }
+        }
+        
+        &_footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 0.5rem;
+            margin-bottom: -0.5rem;
+            
+            &_btn {
+                border: 1px solid #006682;
+                border-radius: 0.3rem;
+                padding: 0.2rem 0.5rem;
+                background-color: #006682;
+                color: white;
+                box-shadow: 0 0 5px #0000003d;
+                transition: all 300ms ease-in-out;
+                &:hover {
+                    background-color: transparent;
+                    color: #000;
+                }
+            }
+        }
     }
 }

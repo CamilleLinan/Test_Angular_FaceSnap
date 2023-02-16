@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { DatePipe } from '@angular/common';
+import { Component, OnInit, Input } from '@angular/core';
+import { FaceSnap } from '../models/face-snap.model';
 
 @Component({
   selector: 'app-face-snap',
@@ -6,29 +8,22 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./face-snap.component.scss']
 })
 export class FaceSnapComponent implements OnInit {
-  title!: string;
-  description!: string;
-  createDate!: Date;
-  likes!: number;
-  imgUrl!: string;
+  @Input() faceSnap!: FaceSnap;
   buttonText!: string;
+  datePipe: DatePipe = new DatePipe('fr-FR');
 
   ngOnInit() {
-    this.title = 'Archibald';
-    this.description = 'Mon beau chien';
-    this.createDate = new Date();
-    this.likes = 6;
-    this.imgUrl = "../../assets/snapface_img1.jpg";
     this.buttonText = 'Like it 😌'
   }
 
   onLike() {
     if (this.buttonText === 'Like it 😌') {
-      this.likes++;
+      this.faceSnap.likes++;
       this.buttonText = 'Unlike it 😔';
     } else {
-      this.likes--;
+      this.faceSnap.likes--;
       this.buttonText = 'Like it 😌';
     }
   }
+
 }

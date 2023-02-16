@@ -4,7 +4,7 @@
     <div class="snap_container">
         <p class="snap_container_content">{{ faceSnap.description }}</p>
         <footer class="snap_container_footer">
-            <p class="snap_container_content snap_container_content_date">Publié le {{ faceSnap.getFormattedDate(datePipe, 'dd/MM/yyyy')  }}</p>
+            <p class="snap_container_content snap_container_content_date">Publié le {{ faceSnap.date }}</p>
             <p class="snap_container_content">
                 <button (click)="onLike()" class="snap_container_footer_btn">{{ buttonText }}</button>
                 ❤️ {{ faceSnap.likes }}

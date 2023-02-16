@@ -14,28 +14,28 @@ export class AppComponent implements OnInit {
   myLastSnap!: FaceSnap;
 
   ngOnInit() {
-    this.mySnap = new FaceSnap(
-      'Archibald',
-      'Mon beau chien',
-      '../../assets/snapface_img1.jpg',
-      new Date(),
-      0
-    );
+    this.mySnap = {
+      title: 'Archibald',
+      description: 'Mon beau chien',
+      imgUrl: '../../assets/snapface_img1.jpg',
+      date: new Date(),
+      likes: 0
+    };
 
-    this.myOtherSnap = new FaceSnap(
-      'Les pyrénées',
-      'Le meilleur endroit pour faire des randonnées',
-      '../../assets/snapface_img2.jpg',
-      new Date(),
-      0
-    );
+    this.myOtherSnap = {
+      title: 'Les pyrénées',
+      description: 'Le meilleur endroit pour faire des randonnées',
+      imgUrl: '../../assets/snapface_img2.jpg',
+      date: new Date(),
+      likes: 0
+    };
 
-    this.myLastSnap = new FaceSnap(
-      'Mes Cupcakes',
-      'Petits cupcakes à la vanille et chantilly',
-      '../../assets/snapface_img3.jpg',
-      new Date(),
-      0
-    );
+    this.myLastSnap = {
+      title: 'Mes Cupcakes',
+      description: 'Petits cupcakes à la vanille et chantilly',
+      imgUrl: '../../assets/snapface_img3.jpg',
+      date: new Date(),
+      likes: 0
+    };
   }
 }

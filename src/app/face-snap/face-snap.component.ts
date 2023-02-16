@@ -1,4 +1,3 @@
-import { DatePipe } from '@angular/common';
 import { Component, OnInit, Input } from '@angular/core';
 import { FaceSnap } from '../models/face-snap.model';
 
@@ -10,7 +9,6 @@ import { FaceSnap } from '../models/face-snap.model';
 export class FaceSnapComponent implements OnInit {
   @Input() faceSnap!: FaceSnap;
   buttonText!: string;
-  datePipe: DatePipe = new DatePipe('fr-FR');
 
   ngOnInit() {
     this.buttonText = 'Like it 😌'
@@ -25,5 +23,4 @@ export class FaceSnapComponent implements OnInit {
       this.buttonText = 'Like it 😌';
     }
   }
-
 }

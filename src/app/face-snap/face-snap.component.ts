@@ -2,6 +2,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import { FaceSnap } from '../models/face-snap.model';
 import { faLocationDot } from '@fortawesome/free-solid-svg-icons';
 import { FaceSnapService } from '../services/face-snaps.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-face-snap',
@@ -13,19 +14,14 @@ export class FaceSnapComponent implements OnInit {
   buttonText!: string;
   faLocationDot = faLocationDot;
 
-  constructor(private faceSnapService: FaceSnapService) {}
+  constructor(private faceSnapService: FaceSnapService,
+              private router: Router) {}
 
   ngOnInit() {
-    this.buttonText = 'Like it 😌';
+
   }
 
-  onLike() {
-    if (this.buttonText === 'Like it 😌') {
-      this.faceSnapService.likeFaceSnapById(this.faceSnap.id, 'like');
-      this.buttonText = 'Unlike it 😔';
-    } else {
-      this.faceSnapService.likeFaceSnapById(this.faceSnap.id, 'dislike');
-      this.buttonText = 'Like it 😌';
-    }
+  onView() {
+    this.router.navigateByUrl(`facesnaps/${this.faceSnap.id}`);
   }
 }

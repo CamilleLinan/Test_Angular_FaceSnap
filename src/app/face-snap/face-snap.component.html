@@ -2,13 +2,13 @@
     <h2 class="snap_title">{{ faceSnap.title | titlecase }}</h2>
     <img [src]="faceSnap.imgUrl" [alt]="faceSnap.title" class="snap_img" />
     <div class="snap_container">
+        <p *ngIf="faceSnap.location === 'Paris'" class="snap_container_content_location"><fa-icon [icon]="faLocationDot"></fa-icon> {{ faceSnap.location }}</p>
         <p class="snap_container_content">{{ faceSnap.description }}</p>
-        <p *ngIf="faceSnap.location === 'Paris'">{{ faceSnap.location }}</p>
         <footer class="snap_container_footer">
-            <p class="snap_container_content snap_container_content_date">Publié le {{ faceSnap.date | date: 'dd/MM/yy' }}</p>
-            <p class="snap_container_content">
+            <p class="snap_container_footer_content snap_container_content_date">Publié le {{ faceSnap.date | date: 'dd/MM/yy' }}</p>
+            <p class="snap_container_footer_content">
                 <button (click)="onLike()" class="snap_container_footer_btn">{{ buttonText }}</button>
-                <span [ngStyle]="{color: 'rgb(0, 100,' + faceSnap.likes + ')'}">❤️ {{ faceSnap.likes }}</span>
+                <span [ngStyle]="{color: 'rgb(0, 100,' + faceSnap.likes * 2 + ')'}">❤️ {{ faceSnap.likes }}</span>
             </p>
         </footer>
     </div>

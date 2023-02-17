@@ -31,6 +31,7 @@
             margin-bottom: -0.5rem;
             
             &_btn {
+                margin-right: 0.5rem;
                 border: 1px solid #006682;
                 border-radius: 0.3rem;
                 padding: 0.2rem 0.5rem;
@@ -45,4 +46,8 @@
             }
         }
     }
+}
+
+.snapped {
+    background-color: #00668245;
 }

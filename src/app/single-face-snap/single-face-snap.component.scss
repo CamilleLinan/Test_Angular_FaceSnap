@@ -1,4 +1,5 @@
 .snap {
+    position: relative;
     display: flex;
     flex-direction: column;
     width: 60%;
@@ -7,6 +8,18 @@
     text-align: center;
     box-shadow: 0 0 16px #0000003d;
     border-radius: 1rem;
+    
+    &_link {
+        position: absolute;
+        top: 1.5rem;
+        left: 1rem;
+        font-size: 20px;
+        color: #000;
+        cursor: pointer;
+        &:hover {
+            color: #91bac6;
+        }
+    }
     
     &_img {
         width: 100%;
@@ -46,23 +59,11 @@
             
             &_btn {
                 margin-right: 0.5rem;
-                border: 1px solid #006682;
-                border-radius: 0.3rem;
-                padding: 0.2rem 0.5rem;
-                background-color: #006682;
-                color: white;
-                box-shadow: 0 0 5px #0000003d;
-                transition: all 300ms ease-in-out;
-                &:hover {
-                    background-color: transparent;
-                    color: #000;
-                }
             }
         }
     }
 }
 
-button {
-    border-radius: 0 0 1rem 1rem;
-    font-weight: 600;
+.snapped {
+    background-color: #00668245;
 }

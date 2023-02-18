@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { FaceSnap } from '../models/face-snap.model';
 import { faLocationDot } from '@fortawesome/free-solid-svg-icons';
 import { FaceSnapService } from '../services/face-snaps.service';
@@ -9,7 +9,7 @@ import { Router } from '@angular/router';
   templateUrl: './face-snap.component.html',
   styleUrls: ['./face-snap.component.scss']
 })
-export class FaceSnapComponent implements OnInit {
+export class FaceSnapComponent {
   @Input() faceSnap!: FaceSnap;
   buttonText!: string;
   faLocationDot = faLocationDot;
@@ -17,9 +17,7 @@ export class FaceSnapComponent implements OnInit {
   constructor(private faceSnapService: FaceSnapService,
               private router: Router) {}
 
-  ngOnInit() {
-
-  }
+  ngOnInit() {}
 
   onView() {
     this.router.navigateByUrl(`facesnaps/${this.faceSnap.id}`);

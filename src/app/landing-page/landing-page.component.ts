@@ -6,13 +6,11 @@ import { Router } from '@angular/router';
   templateUrl: './landing-page.component.html',
   styleUrls: ['./landing-page.component.scss']
 })
-export class LandingPageComponent implements OnInit {
+export class LandingPageComponent {
 
   constructor(private router: Router) {}
 
-  ngOnInit(): void {
-    
-  }
+  ngOnInit(): void {}
 
   onContinue(): void {
     this.router.navigateByUrl('facesnaps');

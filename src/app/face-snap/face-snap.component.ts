@@ -14,8 +14,7 @@ export class FaceSnapComponent {
   buttonText!: string;
   faLocationDot = faLocationDot;
 
-  constructor(private faceSnapService: FaceSnapService,
-              private router: Router) {}
+  constructor(private router: Router) {}
 
   ngOnInit() {}
 

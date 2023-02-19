@@ -1,4 +1,4 @@
-<div class="snap" [ngClass]="{ snapped: buttonText === 'Unlike it 😔' }">
+<div class="snap" *ngIf="faceSnap$ | async as faceSnap" [ngClass]="{ snapped: buttonText === 'Dislike 😔' }">
     <h2 class="snap_title">{{ faceSnap.title | titlecase }}</h2>
     <a routerLink="/facesnaps" class="snap_link"><fa-icon [icon]="faArrowLeft"></fa-icon></a>
     <img [src]="faceSnap.imgUrl" [alt]="faceSnap.title" class="snap_img" />
@@ -8,7 +8,7 @@
         <footer class="snap_container_footer">
             <p class="snap_container_footer_content snap_container_content_date">Publié le {{ faceSnap.date | date: 'dd/MM/yy' }}</p>
             <p class="snap_container_footer_content">
-                <button (click)="onLike()" class="snap_container_footer_btn">{{ buttonText }}</button>
+                <button (click)="onLike(faceSnap.id)" class="snap_container_footer_btn">{{ buttonText }}</button>
                 <span [ngStyle]="{color: 'rgb(0, 100,' + faceSnap.likes * 2 + ')'}">❤️ {{ faceSnap.likes }}</span>
             </p>
         </footer>

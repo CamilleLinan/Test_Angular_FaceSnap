@@ -1,7 +1,6 @@
 import { Component, Input } from '@angular/core';
-import { FaceSnap } from '../core/models/face-snap.model';
+import { FaceSnap } from '../../../core/models/face-snap.model';
 import { faLocationDot } from '@fortawesome/free-solid-svg-icons';
-import { FaceSnapService } from '../core/services/face-snaps.service';
 import { Router } from '@angular/router';
 
 @Component({

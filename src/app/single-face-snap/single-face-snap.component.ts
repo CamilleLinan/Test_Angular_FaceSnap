@@ -3,7 +3,7 @@ import { FaceSnap } from '../models/face-snap.model';
 import { FaceSnapService } from '../services/face-snaps.service';
 import { faLocationDot, faArrowLeft } from '@fortawesome/free-solid-svg-icons';
 import { ActivatedRoute } from '@angular/router';
-import { Observable } from 'rxjs';
+import { Observable, tap } from 'rxjs';
 
 @Component({
   selector: 'app-single-face-snap',
@@ -20,18 +20,20 @@ export class SingleFaceSnapComponent {
               private route: ActivatedRoute) {}
 
   ngOnInit() {
-    this.buttonText = 'Like it 😌';
+    this.buttonText = 'Like 😌';
     const faceSnapId = +this.route.snapshot.params['id'];
     this.faceSnap$ = this.faceSnapService.getFaceSnapById(faceSnapId);
   }
 
-  onLike() {
-    // if (this.buttonText === 'Like it 😌') {
-    //   this.faceSnapService.likeFaceSnapById(this.faceSnap.id, 'like');
-    //   this.buttonText = 'Unlike it 😔';
-    // } else {
-    //   this.faceSnapService.likeFaceSnapById(this.faceSnap.id, 'dislike');
-    //   this.buttonText = 'Like it 😌';
-    // }
+  onLike(faceSnapId: number) {
+    if (this.buttonText === 'Like 😌') {
+      this.faceSnap$ = this.faceSnapService.likeFaceSnapById(faceSnapId, 'like').pipe(
+        tap(() => this.buttonText = 'Dislike 😔')
+      );
+    } else {
+      this.faceSnap$ = this.faceSnapService.likeFaceSnapById(faceSnapId, 'dislike').pipe(
+        tap(() => this.buttonText = 'Like 😌')
+      );
+    }
   }
 }

@@ -1,6 +1,6 @@
 import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
-import { Observable } from "rxjs";
+import { map, Observable, switchMap } from "rxjs";
 import { FaceSnap } from "../models/face-snap.model";
 
 @Injectable({
@@ -10,8 +10,6 @@ export class FaceSnapService {
 
     constructor(private http: HttpClient) {}
 
-    faceSnaps: FaceSnap[] = [];
-
     getAllFaceSnaps(): Observable<FaceSnap[]> {
         return this.http.get<FaceSnap[]>('http://localhost:3000/facesnaps');
     }
@@ -20,18 +18,27 @@ export class FaceSnapService {
         return this.http.get<FaceSnap>(`http://localhost:3000/facesnaps/${faceSnapId}`);
     }
 
-    likeFaceSnapById(faceSnapId: number, likeType: 'like' | 'dislike'): void {
-        // const faceSnap = this.getFaceSnapById(faceSnapId);
-        // likeType === 'like' ? faceSnap.likes++ : faceSnap.likes--;
+    likeFaceSnapById(faceSnapId: number, likeType: 'like' | 'dislike'): Observable<FaceSnap> {
+        return this.getFaceSnapById(faceSnapId).pipe(
+            map(faceSnap => ({
+                ...faceSnap,
+                likes: faceSnap.likes + (likeType === 'like' ? 1 : -1)
+            })),
+            switchMap(updatedFaceSnap => this.http.put<FaceSnap>(`http://localhost:3000/facesnaps/${faceSnapId}`, updatedFaceSnap))
+        )
     }
 
-    addFaceSnap(formValue: { title: string, description: string, imgUrl: string, location?: string }): void {
-        const faceSnap: FaceSnap = {
-            ...formValue,
-            date: new Date(),
-            likes: 0,
-            id: this.faceSnaps[this.faceSnaps.length - 1].id + 1
-        };
-        this.faceSnaps.push(faceSnap);
+    addFaceSnap(formValue: { title: string, description: string, imgUrl: string, location?: string }): Observable<FaceSnap> {
+        return this.getAllFaceSnaps().pipe(
+            map(faceSnaps => [...faceSnaps].sort((a: FaceSnap, b: FaceSnap) => a.id - b.id)),
+            map(sortedFaceSnaps => sortedFaceSnaps[sortedFaceSnaps.length - 1]),
+            map(previousFaceSnap => ({
+                ...formValue,
+                date: new Date(),
+                likes: 0,
+                id: previousFaceSnap.id + 1
+            })),
+            switchMap(newFaceSnap => this.http.post<FaceSnap>('http://localhost:3000/facesnaps', newFaceSnap))
+        );
     }
 }

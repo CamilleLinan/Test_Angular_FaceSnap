@@ -1,4 +1,4 @@
-<div class="snap" [ngClass]="{ snapped: buttonText === 'Unlike it 😔' }">
+<div class="snap" *ngIf="faceSnap$ | async as faceSnap" [ngClass]="{ snapped: buttonText === 'Unlike it 😔' }">
     <h2 class="snap_title">{{ faceSnap.title | titlecase }}</h2>
     <a routerLink="/facesnaps" class="snap_link"><fa-icon [icon]="faArrowLeft"></fa-icon></a>
     <img [src]="faceSnap.imgUrl" [alt]="faceSnap.title" class="snap_img" />
